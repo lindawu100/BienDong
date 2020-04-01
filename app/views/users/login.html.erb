@@ -12,14 +12,25 @@
   </head>
   <body>
     <h1>使用者登入</h1>
-    <form action="">
+    <%= form_for(@user, url: login_path, method: 'post') do |f| %>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, "密碼" %>
+      <%= f.password_field :password %>
+    </div>
+     <%= f.submit "登入" %>
+    <% end %>
+    <!-- <form action="">
         <label for="">Email</label>
         <input type="text" name="email"><br>
 
         <label for="">Password</label>
         <input type="password" name="password">
         <input type="submit" name="submit">
-    </form>
+    </form> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
