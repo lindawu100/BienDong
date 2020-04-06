@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :items
   
   #去找welcome類別的index方法
