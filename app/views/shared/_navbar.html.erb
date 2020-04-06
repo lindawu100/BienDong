@@ -1,8 +1,7 @@
-<%= link_to "餐點列表", items_path %>
+<%= link_to "餐點列表", items_path %> |
 
 <% if session[:ccc] %>
     <%= session[:ccc] %> |
-    <a href="/logout">登出</a>
     <%= link_to "logout", logout_path, method: :delete %>
 
 <% else %>
