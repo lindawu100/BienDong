@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     def logout
         session[:ccc] = nil
         redirect_to root_path
-    end
-    
+    end  
+
     private
     def user_params
         params.require(:user).permit(:email, :password, :password_confirmation)
