@@ -4,4 +4,5 @@ class Item < ApplicationRecord
     # 驗證價錢有填寫且要大於0
 
     belongs_to :category
+    has_one_attached :cover
 end
