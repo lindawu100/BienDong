@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
     before_action :find_item, only: [:show, :edit, :update, :destroy] 
   
     def index
+      # @items = Item.where(delete_at: nil)
+      # @items = Item.available
       @items = Item.all
     end
   
@@ -35,12 +37,15 @@ class ItemsController < ApplicationController
   
     def destroy
       @item.destroy
+      # @item.update(delete_at: Time.now)
       redirect_to items_path, notice: '成功刪除餐點'
     end
   
     private
     def find_item
       @item = Item.find(params[:id])
+      # @item = Item.find_by!(params[:id], delete_at: nil)
+
     end
   
     def item_params

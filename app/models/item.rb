@@ -5,4 +5,12 @@ class Item < ApplicationRecord
 
     belongs_to :category
     has_one_attached :cover
+
+    # scope :available, -> { where(delete_at: nil) }
+    default_scope { where(delete_at: nil) }
+
+    def destroy
+        update(delete_at: Time.now)
+    end
+
 end
