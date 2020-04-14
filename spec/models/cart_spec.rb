@@ -48,8 +48,30 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.first.item.name).to eql i1.name
       expect(cart.items.first.item.name).not_to eql 'item1'
     end
-    
+
     it "可以計算整台購物車的總消費金額" do
+      cart = Cart.new
+      i1 = FactoryBot.create(:item, price: 50)
+      i2 = FactoryBot.create(:item, price: 100)
+
+      3.times { cart.add_item(i1.id) }
+      2.times { cart.add_item(i2.id) }
+
+      expect(cart.total).to be 350
+    end
+
+    it "特別活動可能可搭配折扣(4/1打一折)" do
+      cart = Cart.new
+      i1 = FactoryBot.create(:item, price: 50)
+      i2 = FactoryBot.create(:item, price: 100)
+
+      3.times { cart.add_item(i1.id) }
+      2.times { cart.add_item(i2.id) }
+      t = Time.local(2008, 4, 1, 10, 5, 0)
+      Timecop.travel(t)
+
+      expect(cart.total).to be 35.0
+      expect(cart.total).to eq 35
     end
   end
   describe "進階功能" do
