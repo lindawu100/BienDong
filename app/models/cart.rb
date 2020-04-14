@@ -25,16 +25,41 @@ class Cart
   end
 
   def total
-    tmp = 0
-    @items.each do |item|
-        tmp += item.total
-    end
-        if Time.now.month == 4 && Time.now.day == 1
-            return tmp * 0.1
-        else
-            return tmp
-        end
-    end
-    # @items.reduce(0) { |sum, item| sum + item.total }
-    # @items.sum { |item| item.total }
+    # tmp = 0
+    # @items.each do |item|
+    #     tmp += item.total
+    # end
+    #     if Time.now.month == 4 && Time.now.day == 1
+    #         return tmp * 0.1
+    #     else
+    #         return tmp
+    #     end
+    # end
+
+    # result = @items.reduce(0) { |sum, item| sum + item.total }
+    result = @items.sum { |item| item.total }
+
+  if Time.now.month == 4 and Time.now.day == 1
+    result = result * 0.1
+  end
+
+  return result
+end
+
+def to_hash
+#   items = [
+#     { "item_id" => 1, "quantity" => 3 },
+#     { "item_id" => 2, "quantity" => 2 }
+#   ]
+
+#   items = []
+#   @items.each do |item|
+#     items << { "item_id" => item.item_id, "quantity" => item.quantity }
+#   end
+
+  items = @items.map { |item|
+    { "item_id" => item.item_id, "quantity" => item.quantity }
+  }
+  return { "items" => items }
+  end
 end
