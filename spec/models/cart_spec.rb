@@ -48,6 +48,9 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.first.item.name).to eql i1.name
       expect(cart.items.first.item.name).not_to eql 'item1'
     end
+    
+    it "可以計算整台購物車的總消費金額" do
+    end
   end
   describe "進階功能" do
   end
