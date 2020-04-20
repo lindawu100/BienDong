@@ -8,6 +8,12 @@ class ItemsController < ApplicationController
     end
   
     def show
+      @comment = Comment.new
+      # 抓comment資料並反向排序
+      # @comment = @item.comments.order(id: :desc)
+      
+      # 不要在controller排序的話，可以去model排
+      @comments = @item.comments.includes(:user) #eager loading
     end
   
     def new

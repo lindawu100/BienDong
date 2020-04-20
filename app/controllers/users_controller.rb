@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         user = User.find_by(email: user_params[:email], password: user_params[:password])
 
         if user
-            session[:ccc] = user.email
+            session[:ccc] = user.id
             redirect_to root_path
         else
             redirect_to login_path
