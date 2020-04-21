@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # get "/", to: "welcome#index"
   # get("/", {to: "welcome#index"})
   
+  # user
   get "/login", to: "users#login"
   post "/login", to: "users#sign_in"
   delete "/logout", to: "users#logout"
@@ -26,4 +27,16 @@ Rails.application.routes.draw do
   post "/sign_up", to: "users#registration"
   
   root "items#index"
+
+  # APIs
+  namespace :api do
+    namespace :v1 do
+      resources :items, only: [] do
+        member do
+          post :favorite
+        end
+      end
+    end
+  end
+
 end
