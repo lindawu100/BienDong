@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   resources :categories
   resources :items do
     resources :comments, only: [:create]
+    member do
+      get :add_to_cart
+    end
     # /items/:item_id/comments/new 其實頁面本身就是new，也可不用作
     # /items/:item_id/comments/create
   end
-
 
   # resources :comments
   # /comments 所有comment
@@ -19,6 +21,10 @@ Rails.application.routes.draw do
   # get "/", to: "welcome#index"
   # get("/", {to: "welcome#index"})
   
+  #cart
+  # post "/abc/:id", to: "cart#add", as: :cc
+  resource :cart, only: [:show, :destroy]
+
   # user
   get "/login", to: "users#login"
   post "/login", to: "users#sign_in"

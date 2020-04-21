@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :find_item, only: [:show, :edit, :update, :destroy] 
+    before_action :find_item, only: [:show, :edit, :update, :destroy, :add_to_cart] 
   
     def index
       # @items = Item.where(delete_at: nil)
@@ -45,6 +45,14 @@ class ItemsController < ApplicationController
       @item.destroy
       # @item.update(delete_at: Time.now)
       redirect_to items_path, notice: '成功刪除餐點'
+    end
+
+    def add_to_cart
+      # cart = Cart.from_hash(session[:carty])
+      current_cart.add_item(@item.id)
+      session[:carty] = current_cart.to_hash
+      
+      redirect_to root_path, notice: '已加到購物車'
     end
   
     private

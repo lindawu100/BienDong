@@ -1,13 +1,15 @@
 <h1 data-controller="item">
   <%= @item.name %>(<%= @item.price %> 元)
   <a href="#" class="btn btn-danger" data-action="item#heart">
-
     <% if @item.favorited_by(current_user) %>
       <i class="fas fa-heart" data-target="item.icon"></i>
     <% else %>
       <i class="far fa-heart" data-target="item.icon"></i>
     <% end %>
+  </a>
 
+  <a href="#" class="btn btn-danger">
+    <i class="fas fa-shopping-cart"></i>
   </a>
 </h1>
 
