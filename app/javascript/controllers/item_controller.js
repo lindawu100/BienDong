@@ -9,7 +9,7 @@
 
 import { Controller } from "stimulus"
 import axios from "axios"
-// import Rails from "@rails/ujs"
+import Rails from "@rails/ujs"
 
 export default class extends Controller {
   static targets = ["icon"]
@@ -28,16 +28,25 @@ export default class extends Controller {
 
     // Rails.ajax({
     //   url: `/api/v1/items/${item_id}/favorite`,
+    //   type: 'POST',
     //   success: resp => {
-    //     console.log(resp);
+    //     if(resp.status === 'favorited') {
+    //         this.iconTarget.classList.remove('far');
+    //         this.iconTarget.classList.add('fas');
+    //       } else {
+    //         this.iconTarget.classList.remove('fas');
+    //         this.iconTarget.classList.add('far');
+    //       }
     //   },
     //   error: err => {
     //     console.log(err)
     //   }
     // })
 
+    
     axios.post(`/api/v1/items/${item_id}/favorite`) 
       .then(resp => {
+        debugger
         if(resp.data.status === 'favorited') {
           this.iconTarget.classList.remove('far');
           this.iconTarget.classList.add('fas');

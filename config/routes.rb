@@ -21,9 +21,20 @@ Rails.application.routes.draw do
   # get "/", to: "welcome#index"
   # get("/", {to: "welcome#index"})
   
-  #cart
+  # cart
   # post "/abc/:id", to: "cart#add", as: :cc
-  resource :cart, only: [:show, :destroy]
+  resource :cart, only: [:show, :destroy] do
+    collection do
+      get :checkout
+    end
+  end
+
+  # order
+  resources :orders, only: [:index, :show, :create] do
+    member do
+      delete :cancel
+    end
+  end
 
   # user
   get "/login", to: "users#login"
